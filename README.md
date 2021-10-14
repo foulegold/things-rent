@@ -56,6 +56,7 @@
 - INDEX `FK_deals_announcements` (`announcement_id`) USING BTREE,
 - CONSTRAINT `FK_deals_announcements` FOREIGN KEY (`announcement_id`) REFERENCES `rents_test`.`announcements` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 ## reservations
+`Бронирования товаров`
 - `id` INT(10) NOT NULL AUTO_INCREMENT,
 - `user_id` INT(10) NOT NULL,
 - `announcement_id` INT(10) NOT NULL,
@@ -71,6 +72,7 @@
 - CONSTRAINT `FK_reservations_announcements` FOREIGN KEY (`announcement_id`) REFERENCES `rents_test`.`announcements` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
 - CONSTRAINT `FK_reservations_users` FOREIGN KEY (`user_id`) REFERENCES `rents_test`.`users` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 ## reviews
+`В рамках одной сделки ставим оценку и отзыв`
 - `user_id` INT(10) NOT NULL,
 - `deals_id` INT(10) NULL DEFAULT NULL,
 - `review` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
@@ -84,6 +86,7 @@
 - CONSTRAINT `FK_reviews_deals` FOREIGN KEY (`deals_id`) REFERENCES `rents_test`.`deals` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
 - CONSTRAINT `FK_reviews_users` FOREIGN KEY (`user_id`) REFERENCES `rents_test`.`users` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 ## users_info
+`Информация о пользователе`
 - `user_id` INT(10) NOT NULL,
 - `name` VARCHAR(255) NULL DEFAULT '' COLLATE 'utf8_general_ci',
 - `is_admin` TINYINT(1) NOT NULL DEFAULT '0',
