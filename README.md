@@ -34,7 +34,7 @@
 - `таблица с значениями контактов`
 - `id` INT(10) NOT NULL AUTO_INCREMENT,
 - `user_id` INT(10) NOT NULL,
-- `type_id` INT(10) NOT NULL,
+- `contacts_type_id` INT(10) NOT NULL,
 - `value` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
 - `description` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
 - PRIMARY KEY (`id`) USING BTREE,
