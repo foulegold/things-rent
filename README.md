@@ -92,3 +92,5 @@
 - `updated_at` TIMESTAMP NULL DEFAULT NULL,
 - INDEX `FK_customres_users` (`user_id`) USING BTREE,
 - CONSTRAINT `FK_customres_users` FOREIGN KEY (`user_id`) REFERENCES `rents_test`.`users` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+## Графический вариант
+![](storage/app/Diagram 1.jpg)
