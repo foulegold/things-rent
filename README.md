@@ -1,3 +1,8 @@
+Концепция проекта https://docs.google.com/document/d/11wQf5Q5ghQpNXEdK2j0kVG7zC_usK2ZpKUYeaZ5hpLg/edit?usp=sharing
+
+п.с. Описание пока еще не полное, постепенно буду дописывать. Вы можете оставлять комментарии
+
+
 # Таблицы и их поля
 ## announcements
 `Все объявления сервиса`
