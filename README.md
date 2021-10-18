@@ -2,6 +2,7 @@
 
 Макет https://bootstraptema.ru/_sf/48/4814.html
 
+![image](https://user-images.githubusercontent.com/32966650/137697752-e3321168-6ce4-4be9-81ad-2b50f8d2e7f7.png)
 
 # Таблицы и их поля
 ## announcements
