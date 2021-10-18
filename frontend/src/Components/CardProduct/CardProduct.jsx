@@ -21,7 +21,7 @@ let obj = {
   ],
 };
 
-const CardPriduct = (props) => {
+const CardProduct = (props) => {
   let elements = obj.product.map((el) => {
     return (
       <Card key={el.product_id} style={{ width: "15rem" }}>
@@ -40,8 +40,7 @@ const CardPriduct = (props) => {
       </Card>
     );
   });
-
   return <div className="d-flex justify-content-around">{elements}</div>;
 };
 
-export default CardPriduct;
+export default CardProduct;

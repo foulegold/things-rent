@@ -1,13 +1,8 @@
 import Router from "./Components/Router/Router";
-import CardProduct from "./Components/CardProduct/CardProduct";
+// import CardProduct from "./Components/CardProduct/CardProduct";
 
 function App() {
-  return (
-    <div>
-      <Router />
-      <CardProduct />
-    </div>
-  );
+  return <Router />;
 }
 
 export default App;
