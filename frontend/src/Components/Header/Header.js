@@ -1,10 +1,16 @@
 import "./module.header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAddressCard, faIdBadge } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAddressCard,
+  faIdBadge,
+  faFolderPlus,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import logo from "../Header/logo.png";
 import { Link } from "react-router-dom";
 
 function Header() {
+  const user = false;
   const categories = [
     "Все категории",
     "Автотранспорт",
@@ -17,23 +23,23 @@ function Header() {
 
   return (
     <header>
-      {/* <!-- HEADER --> */}
+      {/*  #header  */}
       <div id="header">
-        {/* <!-- container --> */}
+        {/*  container  */}
         <div className="appContainer">
-          {/* <!-- row --> */}
+          {/*  row  */}
           <div className="row ">
-            {/* <!-- LOGO --> */}
+            {/*  logo  */}
             <div className="col-md-3">
               <div className="header-logo">
                 <Link to="/" className="logo">
-                  <img src={logo} alt=""></img>
+                  <img src={logo} alt="header-logo"></img>
                 </Link>
               </div>
             </div>
-            {/* <!-- /LOGO --> */}
+            {/*  /logo  */}
 
-            {/* <!-- SEARCH BAR --> */}
+            {/*  search  */}
             <div className="col-md-6">
               <div className="header-search">
                 <form>
@@ -47,29 +53,46 @@ function Header() {
                 </form>
               </div>
             </div>
-            {/* <!-- /SEARCH BAR --> */}
+            {/*  /search  */}
 
-            {/* <!-- /REG/AUTH --> */}
-            <div className="col-md-3">
-              <div className="header-btns">
-                {/* <i class="fas fa-address-card">Регистрация</i> */}
-                <button className="reg-btn">
-                  <FontAwesomeIcon icon={faAddressCard} size="lg" />
-                  <span>Регистрация</span>
-                </button>
-                <button className="reg-btn">
-                  <FontAwesomeIcon icon={faIdBadge} size="lg" />
-                  <span>Авторизация </span>
-                </button>
+            {/* если user=true показываются профиль и добавление объявления, иначе рег./авт.        */}
+            {!user ? (
+              <div className="col-md-3">
+                <div className="header-entry">
+                  <button className="entry-btn">
+                    <FontAwesomeIcon icon={faAddressCard} size="lg" />
+                    <span>Регистрация</span>
+                  </button>
+                  <button className="entry-btn">
+                    <FontAwesomeIcon icon={faIdBadge} size="lg" />
+                    <span>Авторизация </span>
+                  </button>
+                </div>
               </div>
-            </div>
-            {/* <!-- /REG/AUTH --> */}
+            ) : (
+              <div className="col-md-3">
+                <div className="header-links">
+                  <Link className="link" to="/announcement">
+                    <button className="links-btn">
+                      <FontAwesomeIcon icon={faFolderPlus} size="lg" />
+                      <span>Новое объявление</span>
+                    </button>
+                  </Link>
+                  <Link className="link" to="/profile">
+                    <button className="links-btn">
+                      <FontAwesomeIcon icon={faUserCircle} size="lg" />
+                      <span>Профиль</span>
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
-          {/* <!-- row --> */}
+          {/* /row */}
         </div>
-        {/* <!-- container --> */}
+        {/*  /container */}
       </div>
-      {/* <!-- HEADER --> */}
+      {/*  /#header  */}
     </header>
   );
 }

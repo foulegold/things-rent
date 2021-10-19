@@ -41,12 +41,31 @@
   border-radius: 0px 40px 40px 0px;
 }
 
-.header-btns {
+.header-entry {
   display: flex;
   justify-content: flex-end;
 }
 
-.reg-btn {
+.entry-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-color: #15161d;
+  border: none;
+  outline: none;
+}
+
+.header-links {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.links-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
