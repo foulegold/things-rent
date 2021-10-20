@@ -15,9 +15,15 @@
 3. redux-thunk - для обработки мидлвар
 4. react-router-dom - для роутинга
 5. react-bootstrap - UI библиотека
+6. @fortawesome/react-fontawesome - библиотека иконок Font Awesome для React (только solid версии)
 
 <!-- ----------------------------------------------------------------------------------- -->
 
 Уже настроены redux ( все что к нему отностися лежит в папке store) и router (Components/Router/Router.js).
+
+Документация по Font Awesome для React:
+
+1. https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react официальная дока по работе в React
+2. https://www.digitalocean.com/community/tutorials/how-to-use-font-awesome-5-with-react-ru туториал на русском
 
 НЕ ЗАБЫВАЙТЕ ДЕЛАТЬ npm install для установки зависимостей из package.json
