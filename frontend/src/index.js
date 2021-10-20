@@ -6,9 +6,10 @@ import "./index.css";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css"; // стили бутстрап
 
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>,
+  </Provider >,
   document.getElementById("root")
 );
