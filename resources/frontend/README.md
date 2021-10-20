@@ -1,6 +1,6 @@
 Работа с Create-React-App (в терминале):
 
-1. Перейти в директорию react командой : cd .\frontend\
+1. Перейти в директорию react командой : cd .\resources\frontend\
 2. Установить необходимые пакеты из package.json : npm install
 3. Для того что бы запустить dev сервер (просмотр frontend части приложения в браузере) : npm start
 4. В браузере откроется http://localhost:3000/
