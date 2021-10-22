@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 
-let obj = {
+const obj = {
   product: [
     {
       product_id: 1,
@@ -21,8 +21,8 @@ let obj = {
   ],
 };
 
-const CardProduct = (props) => {
-  let elements = obj.product.map((el) => {
+const ProductList = (props) => {
+  const elements = obj.product.map((el) => {
     return (
       <Card key={el.product_id} style={{ width: "15rem" }}>
         <Card.Body>
@@ -43,4 +43,4 @@ const CardProduct = (props) => {
   return <div className="d-flex justify-content-around">{elements}</div>;
 };
 
-export default CardProduct;
+export default ProductList;
