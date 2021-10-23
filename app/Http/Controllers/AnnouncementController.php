@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
 {
+    public function getAllAnnouncements(Request $request)
+    {
+        echo json_encode(Announcement::getAllAnnouncements($request));
+    }
+
     /**
      * @param Announcement $announcement
      * @param Request $request

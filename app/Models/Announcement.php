@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 /**
  * @property User user
@@ -75,5 +76,10 @@ class Announcement extends Model
 //        dd($result);
 
         return $result;
+    }
+
+    public static function getAllAnnouncements(Request $request)
+    {
+        dd($request);
     }
 }
