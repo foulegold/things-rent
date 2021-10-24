@@ -81,9 +81,15 @@ class Announcement extends Model
 
     // Вероятные фильтры:
     // category_id, date_from, date_to, price_from, price_to, title
+    // Query-параметры:
+    // page — номер страницы
     public static function getAllAnnouncements(Request $request)
     {
         $params = $request->request->all();
+
+        $pageNum = $request->query->get('page', 1);
+        $pageLimit = config('announcement.announcements.pageLimit');
+        $offset = ($pageNum - 1) * $pageLimit;
 
         // Обработаем параметры от sql-инъекций
         // TODO: добавить более детальную обработку параметров
@@ -108,6 +114,7 @@ class Announcement extends Model
             }
         }
 
+        // TODO: Если не переданы параметры, то добавить фильтр на интересные категории для пользователя
         $whereParams = [
             ['status', '=', 'active'],
         ];
@@ -124,7 +131,7 @@ class Announcement extends Model
             $whereParams[] = ['title', 'like', "%{$params['title']}%"];
         }
 
-        $result = Announcement::where($whereParams)->order('created_at', 'ASC')->get()->toArray();
+        $result = Announcement::where($whereParams)->order('created_at', 'ASC')->limit($pageLimit)->offset($offset)->get()->toArray();
 
         // TODO: Добавить фильтр по свободной дате
         return $result;
