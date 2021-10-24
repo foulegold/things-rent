@@ -19,7 +19,7 @@ class CreateNewUser implements CreatesNewUsers
      * @param  array  $input
      * @return \App\Models\User
      */
-    public function create(array $input)
+    public function create(array $input): User
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
@@ -34,16 +34,16 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         //создаем пользователя и получаем его id
-        $userId = User::create([
-            'name' => $input['name'],
+        $user = User::create([
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
 
         //создаем запись в таблице users_infos
-        return Users_info::create([
-            'user_id' => $userId,
+        Users_info::create([
+            'user_id' => $user->id,
             'name' => $input['name'],
         ]);
+        return $user;
     }
 }

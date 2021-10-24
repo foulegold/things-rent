@@ -103,21 +103,28 @@
 - CONSTRAINT `FK_customres_users` FOREIGN KEY (`user_id`) REFERENCES `rents_test`.`users` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 ## Используемые библиотеки
 1. Пакет Laravel Fortify — https://laravel.su/docs/8.x/fortify
+2. Пакет Laravel Sanctum — https://laravel.com/docs/8.x/sanctum
 ## Аутентификации API
+0. Незабываем отправлять заголовок XSRF-TOKEN на /sanctum/csrf-cookie и подставлять их в запросы ниже
 1. Вход в систему — /login 
-   1. Принимает поля email и password
-2. Регистрацию — /register
+   1. Принимает поля email и password, remember(1/0)
+2. Разлогиниться
+   1. method post - /logout
+3. Регистрацию — /register
    1. POST-запрос к урлу /register
    2. ожидает строковые поля name, email, password и password_confirmation
-3. Сброс пароля — /forgot-password
+   3. Дальше выдать страницу, где пользователя просим подтвердить емаил, проверьте почту и перейдите по ссылке в ней
+   4. никуда не пускаем пользователя, пока не подтвердит почту
+4. Подтверждение электронной почты — email/verification-notification
+    1. POST-запрос
+    2. При желании вы можете добавить в шаблон вашего приложения verify-email кнопку, которая запускает POST-запрос к урлу /email/verification-notification. Когда этот эндпоинт получает запрос, пользователю будет отправлена новая ссылка для подтверждения электронной почты, позволяющая пользователю получить новую ссылку для подтверждения, если предыдущая была случайно удалена или утеряна.
+5. Сброс пароля — /forgot-password
    1. POST-запрос к урлу /forgot-password
    2. ожидает строковое поле email
-4. Сброс двухфакторного пароля — /user/two-factor-recovery-codes
-5. Обновление Пароля — /reset-password
+6. Сброс двухфакторного пароля — /user/two-factor-recovery-codes
+7. Обновление Пароля — /reset-password
    1. ожидает строковые поля email, password, password_confirmation и скрытое поле с именем token, которое содержит значение request()->route('token')
-6. Подтверждение электронной почты — /email/verify
-   1. При желании вы можете добавить в шаблон вашего приложения verify-email кнопку, которая запускает POST-запрос к урлу /email/verification-notification. Когда этот эндпоинт получает запрос, пользователю будет отправлена новая ссылка для подтверждения электронной почты, позволяющая пользователю получить новую ссылку для подтверждения, если предыдущая была случайно удалена или утеряна.
-7. Включение двухфакторной аутентификации — /user/two-factor-authentication
+8. Включение двухфакторной аутентификации — /user/two-factor-authentication
    1. Оповещение о включении для Frontend
       
       - @if (session('status') == 'two-factor-authentication-enabled')
@@ -125,8 +132,8 @@
         - `Включена двухфакторная аутентификация.`
         - &lt;/div>
       - @endif
-8. Двухфакторная аутентификация — /two-factor-challenge, ожидает code или recovery_code
-9. Отключение двухфакторной аутентификации — DELETE-запрос к урлу /user/two-factor-authentication
-10. Подтверждение пароля при денежных операциях — /user/confirm-password
+9. Двухфакторная аутентификация — /two-factor-challenge, ожидает code или recovery_code
+10. Отключение двухфакторной аутентификации — DELETE-запрос к урлу /user/two-factor-authentication
+11. Подтверждение пароля при денежных операциях — /user/confirm-password
     1. POST-запрос к урлу /user/confirm-password
     2. ожидает поле password
