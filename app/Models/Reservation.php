@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
+
+    /**
+     * @param int $announcementId
+     */
+    public static function getReservationsForCalendar($announcementId)
+    {
+
+    }
 }
