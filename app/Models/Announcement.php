@@ -131,7 +131,7 @@ class Announcement extends Model
             $whereParams[] = ['title', 'like', "%{$params['title']}%"];
         }
 
-        $result = Announcement::where($whereParams)->order('created_at', 'ASC')->limit($pageLimit)->offset($offset)->get()->toArray();
+        $result = Announcement::where($whereParams)->orderBy('created_at', 'ASC')->limit($pageLimit)->offset($offset)->get()->toArray();
 
         // TODO: Добавить фильтр по свободной дате
         return $result;
