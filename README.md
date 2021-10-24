@@ -101,5 +101,32 @@
 - `updated_at` TIMESTAMP NULL DEFAULT NULL,
 - INDEX `FK_customres_users` (`user_id`) USING BTREE,
 - CONSTRAINT `FK_customres_users` FOREIGN KEY (`user_id`) REFERENCES `rents_test`.`users` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
-## Графический вариант
-![](storage/app/Diagram 1.jpg)
+## Используемые библиотеки
+1. Пакет Laravel Fortify — https://laravel.su/docs/8.x/fortify
+## Аутентификации API
+1. Вход в систему — /login 
+   1. Принимает поля email и password
+2. Регистрацию — /register
+   1. POST-запрос к урлу /register
+   2. ожидает строковые поля name, email, password и password_confirmation
+3. Сброс пароля — /forgot-password
+   1. POST-запрос к урлу /forgot-password
+   2. ожидает строковое поле email
+4. Сброс двухфакторного пароля — /user/two-factor-recovery-codes
+5. Обновление Пароля — /reset-password
+   1. ожидает строковые поля email, password, password_confirmation и скрытое поле с именем token, которое содержит значение request()->route('token')
+6. Подтверждение электронной почты — /email/verify
+   1. При желании вы можете добавить в шаблон вашего приложения verify-email кнопку, которая запускает POST-запрос к урлу /email/verification-notification. Когда этот эндпоинт получает запрос, пользователю будет отправлена новая ссылка для подтверждения электронной почты, позволяющая пользователю получить новую ссылку для подтверждения, если предыдущая была случайно удалена или утеряна.
+7. Включение двухфакторной аутентификации — /user/two-factor-authentication
+   1. Оповещение о включении для Frontend
+      
+      - @if (session('status') == 'two-factor-authentication-enabled')
+        - &lt;div class="mb-4 font-medium text-sm text-green-600">
+        - `Включена двухфакторная аутентификация.`
+        - &lt;/div>
+      - @endif
+8. Двухфакторная аутентификация — /two-factor-challenge, ожидает code или recovery_code
+9. Отключение двухфакторной аутентификации — DELETE-запрос к урлу /user/two-factor-authentication
+10. Подтверждение пароля при денежных операциях — /user/confirm-password
+    1. POST-запрос к урлу /user/confirm-password
+    2. ожидает поле password
