@@ -1,9 +1,9 @@
-export const getSearchResult = (category, searchValue) => async (dispatch) => {
+export const getSearchResult = (category_id, title) => async (dispatch) => {
   try {
     const response = await fetch("", {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ category, searchValue }),
+      body: JSON.stringify({ category_id, title }),
     });
     if (!response.status.ok) {
       throw new Error(`Request failed with status ${response.status}`);
