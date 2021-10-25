@@ -79,7 +79,7 @@ class Announcement extends Model
         return $result;
     }
 
-    // Вероятные фильтры:
+    // POST-параметры:
     // category_id, date_from, date_to, price_from, price_to, title
     // Query-параметры:
     // page — номер страницы
@@ -118,7 +118,7 @@ class Announcement extends Model
         $whereParams = [
             ['status', '=', 'active'],
         ];
-        if (isset($params['category_id']) and $params['category_id'] != '') {
+        if (isset($params['category_id']) and $params['category_id'] != '' and $params['category_id'] > 0) {
             $whereParams[] = ['category_id', '=', $params['category_id']];
         }
         if (isset($params['price_from']) and $params['price_from'] != '') {
