@@ -23,3 +23,7 @@
   border: none;
   border-radius: 0px 40px 40px 0px;
 }
+
+.gray {
+  background-color: rgb(194, 192, 192);
+}
