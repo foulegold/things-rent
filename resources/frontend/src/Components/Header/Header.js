@@ -8,28 +8,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../Header/logo.png";
 import { Link } from "react-router-dom";
+import Search from "../Search/Search";
 
 function Header() {
   const user = false;
-  const categories = [
-    "Все категории",
-    "Автотранспорт",
-    "Одежда",
-    "Электроника",
-    "Украшения",
-    "Животные",
-    "Мебель",
-  ];
 
   return (
     <header>
-      {/*  #header  */}
       <div id="header">
-        {/*  container  */}
         <div className="appContainer">
-          {/*  row  */}
           <div className="row ">
-            {/*  logo  */}
             <div className="col-md-3">
               <div className="header-logo">
                 <Link to="/" className="logo">
@@ -37,23 +25,9 @@ function Header() {
                 </Link>
               </div>
             </div>
-            {/*  /logo  */}
 
-            {/*  search  */}
-            <div className="col-md-6">
-              <div className="header-search">
-                <form>
-                  <select className="input-select">
-                    {categories.map((el, index) => (
-                      <option value={index}>{el}</option>
-                    ))}
-                  </select>
-                  <input className="input" placeholder="Поиск"></input>
-                  <button className="search-btn">Искать</button>
-                </form>
-              </div>
-            </div>
-            {/*  /search  */}
+            {/* поиск */}
+            <Search />
 
             {/* если user=true показываются профиль и добавление объявления, иначе рег./авт.        */}
             {!user ? (
@@ -88,11 +62,8 @@ function Header() {
               </div>
             )}
           </div>
-          {/* /row */}
         </div>
-        {/*  /container */}
       </div>
-      {/*  /#header  */}
     </header>
   );
 }
