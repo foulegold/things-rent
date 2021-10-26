@@ -82,28 +82,27 @@ function Search() {
 
   // превращение категорий в итерируемы массив
   // ToDo вынести в экшен???
-  const getCategoriesArray = (obj) => {
-    let option = [];
-    for (const elem of Object.entries(obj)) {
-      const el = elem[1];
-      option.push(
-        <option key={el.id} value={el.id} className="gray">
-          {el.title}
-        </option>
-      );
-      if (el.children) {
-        for (const children of Object.entries(el.children)) {
-          let child = children[1];
-          option.push(
-            <option key={child.id} value={child.id}>
-              {child.title}
-            </option>
-          );
+  const getCategoriesArray = (categoriesListObj) => {
+    let options = [];
+    for (let key in categoriesListObj) {
+      const category = categoriesListObj[key];
+        let is_group = false;
+        let className = '';
+        if ('children' in category) {
+            is_group = true;
+            className = 'gray';
         }
-      }
+        options.push(
+            <option key={category.id} value={category.id} className={className}>
+              {category.title}
+            </option>
+        );
+        if (is_group) {
+            options = options.concat(getCategoriesArray(category.children));
+        }
     }
-    return option;
-  };
+    return options;
+  }
 
   const categoriesArr = getCategoriesArray(categories);
 
