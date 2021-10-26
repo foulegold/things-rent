@@ -78,8 +78,61 @@ class Announcement extends Model
         return $result;
     }
 
+    // POST-параметры:
+    // category_id, date_from, date_to, price_from, price_to, title
+    // Query-параметры:
+    // page — номер страницы
     public static function getAllAnnouncements(Request $request)
     {
-        dd($request);
+        $params = $request->request->all();
+
+        $pageNum = $request->query->get('page', 1);
+        $pageLimit = config('announcement.announcements.pageLimit');
+        $offset = ($pageNum - 1) * $pageLimit;
+
+        // Обработаем параметры от sql-инъекций
+        // TODO: добавить более детальную обработку параметров
+        foreach ($params as $key => &$param) {
+            switch ($key) {
+                case 'category_id':
+                    $param = intval($param);
+                    break;
+                case 'date_from':
+                case 'date_to':
+                    $param = date('Y-m-d', strtotime($param));
+                    break;
+                case 'price_from':
+                case 'price_to':
+                    $param = floatval($param);
+                    break;
+                case 'title':
+                    $param = trim($param);
+                    $param = htmlspecialchars($param);
+                    $param = addslashes($param);
+                    break;
+            }
+        }
+
+        // TODO: Если не переданы параметры, то добавить фильтр на интересные категории для пользователя
+        $whereParams = [
+            ['status', '=', 'active'],
+        ];
+        if (isset($params['category_id']) and $params['category_id'] != '' and $params['category_id'] > 0) {
+            $whereParams[] = ['category_id', '=', $params['category_id']];
+        }
+        if (isset($params['price_from']) and $params['price_from'] != '') {
+            $whereParams[] = ['price', '>=', $params['price_from']];
+        }
+        if (isset($params['price_to']) and $params['price_to'] != '' and $params['price_to'] > 0) {
+            $whereParams[] = ['price', '<=', $params['price_to']];
+        }
+        if (isset($params['title']) and $params['title'] != '') {
+            $whereParams[] = ['title', 'like', "%{$params['title']}%"];
+        }
+
+        $result = Announcement::where($whereParams)->orderBy('created_at', 'ASC')->limit($pageLimit)->offset($offset)->get()->toArray();
+
+        // TODO: Добавить фильтр по свободной дате
+        return $result;
     }
 }
