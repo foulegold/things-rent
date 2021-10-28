@@ -27,7 +27,7 @@ class Category extends Model
     }
 
     // Вернет массив категорий в иерархической структуре
-    public static function getAllCategories()
+    public static function getAll()
     {
         $result = [
             '0' => [
@@ -38,13 +38,13 @@ class Category extends Model
         $allCategories = Category::all();
         foreach ($allCategories as $category) {
             if ($category->parent_id == null) {
-                $result[$category->id] = $category->fillCategoryForJSON();
+                $result[$category->id] = $category->fillCategoriesArr();
             }
         }
         return $result;
     }
 
-    public function fillCategoryForJSON()
+    public function fillCategoriesArr()
     {
         $result = [
             'id' => $this->id,
@@ -52,7 +52,7 @@ class Category extends Model
         ];
         if ($this->children != null) {
             foreach ($this->children as $child) {
-                $result['children'][$child->id] = $child->fillCategoryForJSON();
+                $result['children'][$child->id] = $child->fillCategoriesArr();
             }
         }
         return $result;
