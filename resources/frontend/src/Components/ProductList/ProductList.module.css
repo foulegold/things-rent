@@ -56,11 +56,13 @@
 }
 
 .color {
+    opacity: 0.5;
     font-size: 35px;
 }
 
 .color:hover {
     color: #d10024;
+    opacity: 1;
 }
 .color_red {
     color: #d10024;
