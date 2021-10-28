@@ -2,8 +2,13 @@
 
 namespace App\Providers;
 
+use App\Services\Api\Fortify\LoginResponseService;
+use App\Services\Api\Fortify\LogoutResponseService;
+use App\Services\Api\Fortify\RegisterResponseService;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Auth\Notifications\ResetPassword;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Laravel\Fortify\Contracts\LogoutResponse as LogoutResponseContract;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(LoginResponseContract::class, LoginResponseService::class);
+        $this->app->singleton(LogoutResponseContract::class, LogoutResponseService::class);
+        $this->app->singleton(RegisterResponseContract::class, RegisterResponseService::class);
     }
 
     /**
@@ -24,8 +31,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        ResetPassword::createUrlUsing(function ($user, string $token) {
-//            return '/reset-password?token=' . $token;
-//        });
+        //
     }
 }

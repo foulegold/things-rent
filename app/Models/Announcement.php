@@ -82,11 +82,9 @@ class Announcement extends Model
     // category_id, date_from, date_to, price_from, price_to, title
     // Query-параметры:
     // page — номер страницы
-    public static function getAllAnnouncements(Request $request)
+    public static function getAll(Array $params)
     {
-        $params = $request->request->all();
-
-        $pageNum = $request->query->get('page', 1);
+        $pageNum = $params['page'];
         $pageLimit = config('announcement.announcements.pageLimit');
         $offset = ($pageNum - 1) * $pageLimit;
 

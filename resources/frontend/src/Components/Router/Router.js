@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import CardProduct from "../CardProduct/CardProduct";
+import ProductList from "../ProductList/ProductList";
 import Header from "../Header/Header";
 
 
@@ -11,7 +11,7 @@ function Router() {
         {/* ваши роуты или приватРоуты*/}
         {/* ваши роуты или приватРоуты*/}
         {/* ваши роуты или приватРоуты*/}
-        <Route exact path="/CardProduct" component={CardProduct}></Route>
+        <Route exact path="/ProductList" component={ProductList}></Route>
       </Switch>
     </BrowserRouter>
   );

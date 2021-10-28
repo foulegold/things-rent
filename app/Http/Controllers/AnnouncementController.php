@@ -7,26 +7,28 @@ use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
 {
-    public function getAllAnnouncements(Request $request)
+    public function all(Request $request)
     {
-        echo json_encode(Announcement::getAllAnnouncements($request));
+        $params = $request->request->all();
+        $params['page'] = $request->query->get('page', 1);
+        return json_encode(Announcement::getAll($params));
     }
 
     /**
      * @param Announcement $announcement
      * @param Request $request
      */
-    public function getAnnouncement(Announcement $announcement, Request $request)
+    public function one(Announcement $announcement, Request $request)
     {
-        echo json_encode($announcement->getFullAnnouncementData());
+        return json_encode($announcement->getFullAnnouncementData());
     }
 
     /**
      * @param Announcement $announcement
      * @param Request $request
      */
-    public function getAnnouncementsCalendar(Announcement $announcement, Request $request)
+    public function calendar(Announcement $announcement, Request $request)
     {
-        echo json_encode($announcement->getCalendar());
+        return json_encode($announcement->getCalendar());
     }
 }
