@@ -10,11 +10,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'announcement'], function () {
-    Route::match(['get', 'post'], '/get-all', [AnnouncementController::class, 'getAllAnnouncements']);
-    Route::get('/{announcement}', [AnnouncementController::class, 'getAnnouncement']);
-    Route::get('/{announcement}/calendar', [AnnouncementController::class, 'getAnnouncementsCalendar']);
+    Route::get('/all', [AnnouncementController::class, 'all']);
+    Route::get('/{announcement}', [AnnouncementController::class, 'one']);
+    Route::get('/{announcement}/calendar', [AnnouncementController::class, 'calendar']);
 });
 
 Route::group(['prefix' => 'category'], function () {
-    Route::get('/get-all', [CategoryController::class, 'getAllCategories']);
+    Route::get('/all', [CategoryController::class, 'all']);
 });

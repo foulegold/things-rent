@@ -9,8 +9,8 @@ class CategoryController extends Controller
     /**
      *
      */
-    public function getAllCategories()
+    public function all()
     {
-        echo json_encode(Category::getAllCategories());
+        return json_encode(Category::getAll());
     }
 }
