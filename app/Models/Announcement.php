@@ -21,7 +21,7 @@ class Announcement extends Model
      *
      * @var string
      */
-    protected $table = 'Announcements';
+    protected $table = 'announcements';
 
     protected $fillable = [
         'user_id',
