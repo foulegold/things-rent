@@ -1,4 +1,5 @@
 import "./module.header.css";
+import "../../globalCss/globalCss.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressCard,
