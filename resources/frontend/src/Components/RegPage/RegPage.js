@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Button, Container, input } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import "./module.regPage.css";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -17,48 +17,48 @@ const Signup = () => {
   // const dispatch = useDispatch();
 
   return (
-    <Container>
-      <div className="wrapper">
+    <>
+      <div className="reg-wrapper">
         <h3>Регистрация</h3>
 
         <Form className="form">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+          <div className="form-group">
+            <label htmlFor="exampleInputEmail2">Email address</label>
             <input
               type="email"
-              class="form-control"
-              id="exampleInputEmail1"
+              className="form-control"
+              id="exampleInputEmail2"
               aria-describedby="emailHelp"
               placeholder="Почта"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Пароль</label>
+          <div className="form-group">
+            <label htmlFor="exampleInputPassword2">Пароль</label>
             <input
               type="password"
-              class="form-control"
-              id="exampleInputPassword1"
+              className="form-control"
+              id="exampleInputPassword2"
               placeholder="Пароль"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Повторите пароль</label>
+          <div className="form-group">
+            <label htmlFor="exampleInputPassword3">Повторите пароль</label>
             <input
               type="password"
-              class="form-control"
-              id="exampleInputPassword1"
+              className="form-control"
+              id="exampleInputPassword3"
               placeholder="Пароль"
             />
           </div>
 
-          <Button type="submit" class="btn btn-dark">
+          <Button type="submit" className="btn btn-dark">
             Отправить
           </Button>
         </Form>
       </div>
-    </Container>
+    </>
   );
 };
 
