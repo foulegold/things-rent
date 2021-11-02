@@ -1,0 +1,5 @@
+/* задает общую ширину всему сайту */
+.appContainer {
+  width: 1170px;
+  margin: 0 auto;
+}
