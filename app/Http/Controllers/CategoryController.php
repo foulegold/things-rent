@@ -11,6 +11,6 @@ class CategoryController extends Controller
      */
     public function all()
     {
-        return json_encode(Category::getAll());
+        return Category::getAll();
     }
 }

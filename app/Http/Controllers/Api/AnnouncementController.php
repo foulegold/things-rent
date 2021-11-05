@@ -157,4 +157,22 @@ class AnnouncementController extends Controller
             'message' => 'Это объявление не принадлежит этому пользователю!',
         ]);
     }
+
+    //++ Голденко
+    public function all(Request $request)
+    {
+        $params = $request->request->all();
+        $params['page'] = $request->query->get('page', 1);
+        return Announcement::getAll($params);
+    }
+
+    /**
+     * @param Announcement $announcement
+     * @param Request $request
+     */
+    public function one(Announcement $announcement, Request $request)
+    {
+        return $announcement->getFullAnnouncementData();
+    }
+    //-- Голденко
 }
