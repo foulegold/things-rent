@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Http\Controllers\Api\AnnouncementController;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -36,6 +38,14 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+        //Если придет в AnnouncementController по api не существующий ID
+        $this->renderable(function (NotFoundHttpException $e, $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'message' => 'ID not found.'
+                ], 404);
+            }
         });
     }
 }

@@ -3,11 +3,7 @@
   padding-bottom: 15px;
   background-color: #15161d;
   border-bottom: 3px solid #d10024;
-}
-
-.appContainer {
-  width: 1170px;
-  margin: 0 auto;
+  margin-bottom: 25px;
 }
 
 .row {

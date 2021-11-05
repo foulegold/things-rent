@@ -1,0 +1,11 @@
+/* задает общую ширину всему сайту */
+.appContainer {
+  width: 1170px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* задает position: relative, что бы можно было абсолютно позиционировать чаилда */
+.posRel {
+  position: relative;
+}

@@ -16,6 +16,23 @@ class Announcement extends Model
 {
     use HasFactory;
 
+    /**
+     * Связанная с моделью таблица.
+     *
+     * @var string
+     */
+    protected $table = 'announcements';
+
+    protected $fillable = [
+        'user_id',
+        'category_id',
+        'title',
+        'content',
+        'price',
+        'address_tran',
+        'status',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -31,6 +48,7 @@ class Announcement extends Model
         return $this->hasMany(Reservation::class);
     }
 
+    
     // Получаем полную информацию по объявлению
     public function getFullAnnouncementData()
     {
@@ -52,7 +70,7 @@ class Announcement extends Model
         $monthBefore = config('announcement.reservation.countMonthBeforeCurrent');
         $monthAfter = config('announcement.reservation.countMonthAfterCurrent');
         $date_from = date('Y-m-01', strtotime(" -{$monthBefore} MONTH"));
-        $date_to = date('Y-m-' . date('t', strtotime(date('Y-m-01') .  " +{$monthAfter} MONTH")), strtotime(date('Y-m-01') . " +{$monthAfter} MONTH"));
+        $date_to = date('Y-m-' . date('t', strtotime(date('Y-m-01') . " +{$monthAfter} MONTH")), strtotime(date('Y-m-01') . " +{$monthAfter} MONTH"));
 
         $curDate = $date_from;
         while ($curDate <= $date_to) {

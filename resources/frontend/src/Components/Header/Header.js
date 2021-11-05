@@ -1,4 +1,5 @@
 import "./module.header.css";
+import "../../globalCss/globalCss.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressCard,
@@ -9,14 +10,19 @@ import {
 import logo from "../Header/logo.png";
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
+import { useState } from "react";
+import AuthPage from "../AuthPage/AuthPage";
+import RegPage from "../RegPage/RegPage";
 
 function Header() {
   const user = false;
+  const [regFlg, setRegFlg] = useState(false);
+  const [authFlg, setAuthFlg] = useState(false);
 
   return (
     <header>
       <div id="header">
-        <div className="appContainer">
+        <div className="appContainer posRel">
           <div className="row ">
             <div className="col-md-3">
               <div className="header-logo">
@@ -33,11 +39,23 @@ function Header() {
             {!user ? (
               <div className="col-md-3">
                 <div className="header-entry">
-                  <button className="entry-btn">
+                  <button
+                    className="entry-btn"
+                    onClick={() => {
+                      setRegFlg(!regFlg);
+                      setAuthFlg(false);
+                    }}
+                  >
                     <FontAwesomeIcon icon={faAddressCard} size="lg" />
                     <span>Регистрация</span>
                   </button>
-                  <button className="entry-btn">
+                  <button
+                    className="entry-btn"
+                    onClick={() => {
+                      setAuthFlg(!authFlg);
+                      setRegFlg(false);
+                    }}
+                  >
                     <FontAwesomeIcon icon={faIdBadge} size="lg" />
                     <span>Авторизация </span>
                   </button>
@@ -62,6 +80,10 @@ function Header() {
               </div>
             )}
           </div>
+          {regFlg && <RegPage />}
+          {authFlg && (
+            <AuthPage setRegFlg={setRegFlg} setAuthFlg={setAuthFlg} />
+          )}
         </div>
       </div>
     </header>
