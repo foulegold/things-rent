@@ -1,11 +1,12 @@
 import "./module.search.css";
-import { useDispatch } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { getSearchResult } from "../../store/actions/searchAction";
 
 function Search() {
   const dispatch = useDispatch();
-  // получение значения категории
+  const categories = useSelector((state) => state.categories, shallowEqual)
+
   const [selectValue = 0, setSelectValue] = useState();
   const [inputValue = "", setInputValue] = useState();
 
@@ -16,90 +17,80 @@ function Search() {
     setInputValue("");
   }
 
-  // категории будут получаться с бэка
-  // const categories = [
-  //   "Все категории",
-  //   "Автотранспорт",
-  //   "Одежда",
-  //   "Электроника",
-  //   "Украшения",
-  //   "Животные",
-  //   "Мебель",
-  // ];
 
   // в таком виде будут приходить категории с бэка
-  const categories = {
-    0: {
-      id: 0,
-      title: "Все категории",
-    },
+  // const categories = {
+  //   0: {
+  //     id: 0,
+  //     title: "Все категории",
+  //   },
 
-    1: {
-      id: 1,
-      title: "Автотранспорт",
-      children: {
-        2: {
-          id: 2,
-          title: "Легковые",
-        },
-        3: {
-          id: 3,
-          title: "Грузовые",
-        },
-      },
-    },
+  //   1: {
+  //     id: 1,
+  //     title: "Автотранспорт",
+  //     children: {
+  //       2: {
+  //         id: 2,
+  //         title: "Легковые",
+  //       },
+  //       3: {
+  //         id: 3,
+  //         title: "Грузовые",
+  //       },
+  //     },
+  //   },
 
-    4: {
-      id: 4,
-      title: "Одежда",
-      children: {
-        5: {
-          id: 5,
-          title: "Для взрослых",
-        },
-        6: {
-          id: 6,
-          title: "Для детей",
-        },
-      },
-    },
+  //   4: {
+  //     id: 4,
+  //     title: "Одежда",
+  //     children: {
+  //       5: {
+  //         id: 5,
+  //         title: "Для взрослых",
+  //       },
+  //       6: {
+  //         id: 6,
+  //         title: "Для детей",
+  //       },
+  //     },
+  //   },
 
-    7: {
-      id: 7,
-      title: "Книги",
-      children: {
-        8: {
-          id: 8,
-          title: "Фентези",
-        },
-        9: {
-          id: 9,
-          title: "Хентай манга",
-        },
-      },
-    },
-  };
+  //   7: {
+  //     id: 7,
+  //     title: "Книги",
+  //     children: {
+  //       8: {
+  //         id: 8,
+  //         title: "Фентези",
+  //       },
+  //       9: {
+  //         id: 9,
+  //         title: "Хентай манга",
+  //       },
+  //     },
+  //   },
+  // };
 
-  // превращение категорий в итерируемы массив
-  // ToDo вынести в экшен???
+  // // превращение категорий в итерируемый массив
+  // // ToDo вынести в экшен???
   const getCategoriesArray = (categoriesListObj) => {
     let options = [];
     for (let key in categoriesListObj) {
       const category = categoriesListObj[key];
-        let is_group = false;
-        let className = '';
-        if ('children' in category) {
-            is_group = true;
-            className = 'gray';
-        }
-        options.push(
-            <option key={category.id} value={category.id} className={className}>
-              {category.title}
-            </option>
-        );
-        if (is_group) {
-            options = options.concat(getCategoriesArray(category.children));
-        }
+      let is_group = false;
+      let className = 'regular';
+      if ('children' in category) {
+        is_group = true;
+        className = 'title';
+      }
+      options.push(
+        <option key={category.id} value={category.id} className={className}>
+          {category.title}
+        </option>
+      );
+      if (is_group) {
+        options = options.concat(getCategoriesArray(category.children));
+      }
     }
     return options;
   }
