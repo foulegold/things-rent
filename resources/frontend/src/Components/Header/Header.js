@@ -13,11 +13,21 @@ import Search from "../Search/Search";
 import { useState } from "react";
 import AuthPage from "../AuthPage/AuthPage";
 import RegPage from "../RegPage/RegPage";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getAllCategories } from "../../store/actions/categoriesAction";
 
 function Header() {
   const user = false;
   const [regFlg, setRegFlg] = useState(false);
   const [authFlg, setAuthFlg] = useState(false);
+
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(getAllCategories())
+  }, [])
 
   return (
     <header>

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import AuthPage from "../AuthPage/AuthPage";
-import RegPage from "../RegPage/RegPage";
+import AnnouncementMiniCard from "../AnnouncementMiniCard/AnnouncementMiniCard";
+import FilteredAnnouncements from "../FilteredAnnouncements/FilteredAnnouncements";
 import MainPage from "../MainPage/MainPage";
 
 function Router() {
@@ -8,12 +8,12 @@ function Router() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={MainPage}></Route>
-
+        <Route exact path="/filter" component={FilteredAnnouncements}></Route>
+        <Route exact path="/card" component={AnnouncementMiniCard}></Route>
         {/* ваши роуты или приватРоуты*/}
         {/* ваши роуты или приватРоуты*/}
 
-        <Route exact path="/auth" component={AuthPage}></Route>
-        <Route exact path="/reg" component={RegPage}></Route>
+
       </Switch>
     </BrowserRouter>
   );
