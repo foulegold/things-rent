@@ -54,7 +54,7 @@ const Signup = () => {
           </div>
 
           <Button type="submit" className="btn btn-dark">
-            Отправить
+            Зарегистрироваться
           </Button>
         </Form>
       </div>

@@ -1,5 +1,5 @@
 .filter__wrapper {
-  min-height: calc(100% - 375px);
+  min-height: calc(100vh - 410px);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

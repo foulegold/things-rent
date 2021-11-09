@@ -17,7 +17,9 @@ function MainPage() {
   return (
     <>
       <Header />
-      <ProductList />
+      <main>
+        <ProductList />
+      </main>
       <Footer />
     </>
   );

@@ -6,7 +6,7 @@ import { shallowEqual, useSelector } from "react-redux"
 import Footer from "../Footer/Footer"
 
 function FilteredAnnouncements() {
-  const announcements = useSelector((state) => state.announcements, shallowEqual)
+  const announcements = useSelector((state) => state.filteredAnnouncements, shallowEqual)
 
   return (
     <>
@@ -14,7 +14,7 @@ function FilteredAnnouncements() {
       <main>
         <div className="appContainer">
           <div className="filter__wrapper">
-            {announcements.length ? announcements.map((el) => <AnnouncementMiniCard title={el.title} price={el.price} />) : <span className="filter__empty">Ничего не найдено</span>}
+            {announcements.length ? announcements.map((el) => <AnnouncementMiniCard title={el.title} price={el.price} id={el.id} key={el.id} />) : <span className="filter__empty">Ничего не найдено</span>}
           </div>
         </div>
       </main>

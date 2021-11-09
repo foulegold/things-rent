@@ -1,5 +1,6 @@
 .miniCard {
   width: 250px;
+  height: 330px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,8 +15,8 @@
 
 .miniCard__img {
   display: block;
-  width: 248px;
-  height: 248px;
+  width: 244px;
+  height: 244px;
   margin-bottom: 10px;
 }
 
