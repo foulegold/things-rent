@@ -1,13 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import categoriesReducer from "./reducers.js/categoriesReducer";
-import searchReducer from "./reducers.js/searchReducer";
+import announcementReducer from "./reducers/announcementsReducer";
+import categoriesReducer from "./reducers/categoriesReducer";
+import searchReducer from "./reducers/searchReducer";
 
 
 // объединение редьюсеров
 const rootReducer = combineReducers({
   // ваши редьюсеры
+  announcements: announcementReducer,
   filteredAnnouncements: searchReducer,
   categories: categoriesReducer
 });

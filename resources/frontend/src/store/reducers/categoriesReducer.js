@@ -3,7 +3,7 @@ import { GET_CATEGORIES } from "../actions/categoriesAction";
 
 const initialState = [{ id: 0, title: "Все категории" }]
 
-function categoriesReduser(state = initialState, action) {
+function categoriesReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CATEGORIES:
       return state = action.payload
@@ -13,4 +13,4 @@ function categoriesReduser(state = initialState, action) {
   }
 }
 
-export default categoriesReduser
+export default categoriesReducer

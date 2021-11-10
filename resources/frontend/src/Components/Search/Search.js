@@ -2,9 +2,11 @@ import "./module.search.css";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { getSearchResult } from "../../store/actions/searchAction";
+import { useHistory } from "react-router";
 
 function Search() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const categories = useSelector((state) => state.categories, shallowEqual)
 
   const [selectValue = 0, setSelectValue] = useState();
@@ -15,6 +17,7 @@ function Search() {
     dispatch(getSearchResult(selectValue, inputValue));
     setSelectValue(0);
     setInputValue("");
+    history.push("/filter")
   }
 
 
