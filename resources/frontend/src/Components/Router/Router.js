@@ -9,11 +9,8 @@ function Router() {
       <Switch>
         <Route exact path="/" component={MainPage}></Route>
         <Route exact path="/filter" component={FilteredAnnouncements}></Route>
-        <Route exact path="/card" component={AnnouncementMiniCard}></Route>
         {/* ваши роуты или приватРоуты*/}
         {/* ваши роуты или приватРоуты*/}
-
-
       </Switch>
     </BrowserRouter>
   );

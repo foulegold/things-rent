@@ -15,8 +15,8 @@ function Search() {
   function searchSubmitHandler(e) {
     e.preventDefault();
     dispatch(getSearchResult(selectValue, inputValue));
-    setSelectValue(0);
-    setInputValue("");
+    // setSelectValue(0);
+    // setInputValue("");
     history.push("/filter")
   }
 
