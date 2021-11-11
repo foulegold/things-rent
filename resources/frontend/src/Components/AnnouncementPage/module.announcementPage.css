@@ -25,6 +25,17 @@
   margin-bottom: 15px;
 }
 
+.announcement__status_active {
+  padding: 2px;
+  background-color: rgb(105, 236, 101);
+}
+
+.announcement__status_inactive {
+  padding: 2px;
+  background-color:#d85f6b;
+  color: white;
+}
+
 .announcement__adress {
   padding-bottom: 10px;
   border-bottom: 1px solid rgb(190, 189, 189);

@@ -23,7 +23,7 @@ function AnnouncementPage() {
   //   (state) => state.author.find((el) => el.user_id == announcement.user_id)
   // );
 
-  const title = announcement.title.slice(0, 40)
+  const title = announcement.title
   const address = announcement.address_tran
   const content = announcement.content
   const price = Math.round(announcement.price) + " ₽"
@@ -39,7 +39,7 @@ function AnnouncementPage() {
             <h2 className="announcement__title">{title}</h2>
             <div className="announcement__status-wrapper">
               <span className="announcement__created-at">{"10.11.2021"}</span>
-              {status == "active" ? <span className="announcement__status">Активно</span> : <span className="announcement__status_inactive">Неактивно</span>}
+              {status == "active" ? <div className="announcement__status_active">Активно</div> : <div className="announcement__status_inactive">Неактивно</div>}
             </div>
             <img src={IMG} className='announcement__img' alt="product-img"></img>
             <div className="announcement__adress">{address}</div>
