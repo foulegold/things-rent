@@ -1,11 +1,11 @@
 .filter__wrapper {
-  min-height: calc(100vh - 410px);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 10px;
+    min-height: calc(100vh - 410px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 10px;
 }
 
 .filter__empty {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
