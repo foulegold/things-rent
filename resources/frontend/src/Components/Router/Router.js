@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AnnouncementPage from "../AnnouncementPage/AnnouncementPage";
 import FilteredAnnouncements from "../FilteredAnnouncements/FilteredAnnouncements";
 import MainPage from "../MainPage/MainPage";
+import NewAnnouncement from "../NewAnnouncement/NewAnnouncement";
 
 
 function Router() {
@@ -15,6 +16,7 @@ function Router() {
           path="/announcement/:id"
           component={AnnouncementPage}
         ></Route>
+        <Route exact path="/newAnnouncement" component={NewAnnouncement}></Route>
       </Switch>
     </BrowserRouter>
   );
