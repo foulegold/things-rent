@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import AnnouncementMiniCard from "../AnnouncementMiniCard/AnnouncementMiniCard";
 import FilteredAnnouncements from "../FilteredAnnouncements/FilteredAnnouncements";
 import MainPage from "../MainPage/MainPage";
 
