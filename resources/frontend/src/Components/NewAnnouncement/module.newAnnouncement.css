@@ -1,4 +1,18 @@
 .newAnnouncementForm {
+  min-height: calc(100vh - 410px);
   padding: 0px 15px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between
+}
+
+.newAnnouncementForm__label {
+  font-weight: 500;
+}
+
+.newAnnouncementForm__warning {
+  display: flex;
+  flex-direction: column;
+  font-style: italic;
 }
