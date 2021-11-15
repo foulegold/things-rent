@@ -2,6 +2,7 @@
 
 namespace App\Services\Api\Fortify;
 
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,7 @@ class LoginResponseService implements LoginResponseContract
         return response()->json([
             'status' => 'ok',
             'message' => 'user authorization successful',
+            'name' => User::find(Auth::user()->id)->usersInfo->name,
             'user' => Auth::user()
         ]);
     }

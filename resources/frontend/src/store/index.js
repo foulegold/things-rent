@@ -7,7 +7,6 @@ import categoriesReducer from "./reducers/categoriesReducer";
 import searchReducer from "./reducers/searchReducer";
 import spinnerReducer from "./reducers/spinnerReducer";
 
-
 // объединение редьюсеров
 const rootReducer = combineReducers({
   announcements: announcementReducer,
