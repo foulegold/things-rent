@@ -5,26 +5,24 @@ import "./module.authPage.css";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { login } from "../../store/actions/authAction";
+
 
 const Login = ({ setRegFlg, setAuthFlg }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [remember, setRemember] = useState(0)
+  // const [error, setError] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     setError("");
-  //     try {
-  //         await firebase.auth().signInWithEmailAndPassword(email, password);
-  //         // await firebase.auth().signOut()
-  //         dispatch(changeIsAuth(true));
-  //         history.push("/home");
-  //     } catch (error) {
-  //         setError(error.message);
-  //     }
-  // };
+  function handleAuth(e) {
+    e.preventDefault();
+    dispatch(login(email, password, remember))
+    setAuthFlg(false)
+  }
+
+
   return (
     <>
       <div className="auth-wrapper">
@@ -32,7 +30,7 @@ const Login = ({ setRegFlg, setAuthFlg }) => {
 
         <Form
           className="form"
-          //  onSubmit={handleSubmit}
+
         >
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
@@ -63,12 +61,17 @@ const Login = ({ setRegFlg, setAuthFlg }) => {
               type="checkbox"
               className="form-check-input"
               id="exampleCheck1"
+              onChange={function () {
+                if (remember === 0) {
+                  setRemember(1)
+                } else setRemember(0)
+              }}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
               Запомнить меня
             </label>
           </div>
-          <Button type="submit" className="btn btn-dark">
+          <Button type="submit" onClick={(e) => handleAuth(e)} className="btn btn-dark">
             Войти
           </Button>
         </Form>

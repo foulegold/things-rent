@@ -1,6 +1,4 @@
-import { URL } from "../../globalVars/globalVars";
 import Cookies from 'js-cookie'
-
 
 
 export const registration = (name, email, password, password_confirmation) => async (dispatch) => {
@@ -9,22 +7,8 @@ export const registration = (name, email, password, password_confirmation) => as
       method: "POST",
       headers: { "Content-type": "application/json", 'X-XSRF-TOKEN': Cookies.get("XSRF-TOKEN") },
       credentials: "include",
-      body: JSON.stringify({ name, email, password, password_confirmation }),
-      mode: "cors"
+      body: JSON.stringify({ name, email, password, password_confirmation })
     }))
-
-    //   // const response = await fetch(`https://things-rent.microfo.ru/register`, {
-    //   //   method: "POST",
-    //   //   headers: { "Content-type": "application/json" },
-    //   //   body: JSON.stringify({ name, email, password, password_confirmation }),
-    //   // })
-
-    //   //   // if (!response.ok) {
-    //   //   //   throw new Error(`Request failed with status ${response.status}`);
-    //   //   // }
-
-    //   //   // const data = await response.json();
-    //   //   // console.log(data)
 
   } catch (err) {
     // обработка ошибки

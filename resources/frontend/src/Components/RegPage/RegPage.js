@@ -45,7 +45,7 @@ const Signup = () => {
               className="form-control"
               id="exampleInputEmail2"
               aria-describedby="emailHelp"
-              placeholder="Почта"
+              placeholder="example@example.ru"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -56,7 +56,7 @@ const Signup = () => {
               type="password"
               className="form-control"
               id="exampleInputPassword2"
-              placeholder="Пароль"
+              placeholder="Минимум 8 символов"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
