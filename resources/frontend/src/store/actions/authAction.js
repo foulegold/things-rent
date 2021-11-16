@@ -15,15 +15,22 @@ export const userLogout = () => ({
 
 export const login = (email, password, remember) => async (dispatch) => {
   try {
-    fetch("https://things-rent.microfo.ru/sanctum/csrf-cookie").then(response => fetch(`https://things-rent.microfo.ru/login`, {
+    await fetch("/sanctum/csrf-cookie")
+
+    const response = await fetch(`/login`, {
       method: "POST",
       headers: { "Content-type": "application/json", 'X-XSRF-TOKEN': Cookies.get("XSRF-TOKEN") },
       credentials: "include",
       body: JSON.stringify({ email, password, remember })
-    })).then(function (data) {
-      console.log(data);
-      dispatch(userLogin(data))
     })
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const data = await response.json()
+    const userInfo = { id: data.user.id, name: data.name, email: data.user.email }
+    dispatch(userLogin(userInfo))
 
   } catch (err) {
     // обработка ошибки
@@ -33,11 +40,17 @@ export const login = (email, password, remember) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    fetch("https://things-rent.microfo.ru/sanctum/csrf-cookie").then(response => fetch(`https://things-rent.microfo.ru/logout`, {
+    await fetch("/sanctum/csrf-cookie")
+
+    const response = await fetch(`logout`, {
       method: "POST",
       headers: { 'X-XSRF-TOKEN': Cookies.get("XSRF-TOKEN") },
       credentials: "include",
-    })).then(dispatch(userLogout()))
+    })
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
 
   } catch (err) {
     // обработка ошибки
