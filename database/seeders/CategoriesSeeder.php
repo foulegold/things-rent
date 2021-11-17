@@ -27,11 +27,27 @@ class CategoriesSeeder extends Seeder
      */
     public function getDataCategory() : array
     {
+        $categories = [
+            'Бильярд и боулинг',
+            'Дайвинг и водный спорт',
+            'Единоборства',
+            'Зимние виды спорта',
+            'Игры с мячом',
+            'Настольные игры',
+            'Пейнтбол и страйкбол',
+            'Ролики и скейтбординг',
+            'Теннис, бадминтон, пинг-понг',
+            'Туризм',
+            'Фитнес и тренажёры',
+            'Спортивное питание',
+            'Другое',
+        ];
+
         $faker = Factory::create('ru_RU');
         $data = [];
-        for($i=0; $i < 10; $i++) {
+        foreach ($categories as $category) {
             $data[] = [
-                'title' => $faker->realText(10),
+                'title' => $category,
                 'description' => $faker->realText(random_int(300,500)),
             ];
         }

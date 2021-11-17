@@ -17,22 +17,6 @@ class UpdateAnnouncementRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules(): array
-    {
-        return [
-            'category_id' => ['required', 'integer'],
-            'title' => ['required', 'string'],
-            'content' => ['required', 'string'],
-            'price' => ['required', 'numeric'],
-            'address_tran' => ['required', 'string'],
-        ];
-    }
-
-    /**
      * @return array
      */
     public function messages(): array
