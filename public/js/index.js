@@ -11612,14 +11612,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _globalVars_globalVars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../globalVars/globalVars */ "./resources/frontend/src/globalVars/globalVars.js");
-/* harmony import */ var _spinnerActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./spinnerActions */ "./resources/frontend/src/store/actions/spinnerActions.js");
+/* harmony import */ var _spinnerActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./spinnerActions */ "./resources/frontend/src/store/actions/spinnerActions.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 
 
 var GET_ANNOUNCEMENTS = "GET_ANNOUNCEMENTS";
@@ -11637,10 +11635,10 @@ var getAllAnnouncements = function getAllAnnouncements() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch((0,_spinnerActions__WEBPACK_IMPORTED_MODULE_2__.setLoading)(true));
+              dispatch((0,_spinnerActions__WEBPACK_IMPORTED_MODULE_1__.setLoading)(true));
               _context.prev = 1;
               _context.next = 4;
-              return fetch("".concat(_globalVars_globalVars__WEBPACK_IMPORTED_MODULE_1__.URL, "announcement/all"));
+              return fetch("/api/announcement/all");
 
             case 4:
               response = _context.sent;
@@ -11659,7 +11657,7 @@ var getAllAnnouncements = function getAllAnnouncements() {
             case 9:
               data = _context.sent;
               dispatch(getAnnouncements(data));
-              dispatch((0,_spinnerActions__WEBPACK_IMPORTED_MODULE_2__.setLoading)(false));
+              dispatch((0,_spinnerActions__WEBPACK_IMPORTED_MODULE_1__.setLoading)(false));
               _context.next = 17;
               break;
 
@@ -11894,7 +11892,7 @@ var getAllCategories = function getAllCategories() {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return fetch("".concat(_globalVars_globalVars__WEBPACK_IMPORTED_MODULE_1__.URL, "category/all"));
+              return fetch("/api/category/all");
 
             case 3:
               response = _context.sent;
@@ -11952,7 +11950,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _globalVars_globalVars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../globalVars/globalVars */ "./resources/frontend/src/globalVars/globalVars.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -11969,11 +11967,17 @@ var addNewAnnouncement = function addNewAnnouncement(category_id, title, content
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return fetch("".concat(_globalVars_globalVars__WEBPACK_IMPORTED_MODULE_1__.URL, "announcement"), {
+            return fetch("/sanctum/csrf-cookie");
+
+          case 3:
+            _context.next = 5;
+            return fetch("/api/announcement", {
               method: "POST",
               headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'X-XSRF-TOKEN': js_cookie__WEBPACK_IMPORTED_MODULE_1__["default"].get("XSRF-TOKEN")
               },
+              credentials: "include",
               body: JSON.stringify({
                 category_id: category_id,
                 title: title,
@@ -11983,32 +11987,32 @@ var addNewAnnouncement = function addNewAnnouncement(category_id, title, content
               })
             });
 
-          case 3:
+          case 5:
             response = _context.sent;
 
             if (response.ok) {
-              _context.next = 6;
+              _context.next = 8;
               break;
             }
 
             throw new Error("Request failed with status ".concat(response.status));
 
-          case 6:
-            _context.next = 11;
+          case 8:
+            _context.next = 13;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 10:
+            _context.prev = 10;
             _context.t0 = _context["catch"](0);
             // обработка ошибки
             console.log(_context.t0);
 
-          case 11:
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 10]]);
   }));
 };
 
@@ -12038,38 +12042,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var registration = function registration(name, email, password, password_confirmation) {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(dispatch) {
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              try {
-                fetch("https://things-rent.microfo.ru/sanctum/csrf-cookie").then(function (response) {
-                  return fetch("https://things-rent.microfo.ru/register", {
-                    method: "POST",
-                    headers: {
-                      "Content-type": "application/json",
-                      'X-XSRF-TOKEN': js_cookie__WEBPACK_IMPORTED_MODULE_1__["default"].get("XSRF-TOKEN")
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({
-                      name: name,
-                      email: email,
-                      password: password,
-                      password_confirmation: password_confirmation
-                    })
-                  });
-                });
-              } catch (err) {
-                // обработка ошибки
-                console.log(err);
+              _context.prev = 0;
+              _context.next = 3;
+              return fetch("/sanctum/csrf-cookie");
+
+            case 3:
+              _context.next = 5;
+              return fetch("/register", {
+                method: "POST",
+                headers: {
+                  "Content-type": "application/json",
+                  'X-XSRF-TOKEN': js_cookie__WEBPACK_IMPORTED_MODULE_1__["default"].get("XSRF-TOKEN")
+                },
+                credentials: "include",
+                body: JSON.stringify({
+                  name: name,
+                  email: email,
+                  password: password,
+                  password_confirmation: password_confirmation
+                })
+              });
+
+            case 5:
+              response = _context.sent;
+
+              if (response.ok) {
+                _context.next = 8;
+                break;
               }
 
-            case 1:
+              throw new Error("Request failed with status ".concat(response.status));
+
+            case 8:
+              _context.next = 13;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](0);
+              // обработка ошибки
+              console.log(_context.t0);
+
+            case 13:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[0, 10]]);
     }));
 
     return function (_x) {
@@ -12095,14 +12119,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _globalVars_globalVars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../globalVars/globalVars */ "./resources/frontend/src/globalVars/globalVars.js");
-/* harmony import */ var _spinnerActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./spinnerActions */ "./resources/frontend/src/store/actions/spinnerActions.js");
+/* harmony import */ var _spinnerActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./spinnerActions */ "./resources/frontend/src/store/actions/spinnerActions.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 
 
 var GET_SEARCH_RESULT = "GET_SEARCH_RESULT";
@@ -12120,10 +12142,10 @@ var getSearchResult = function getSearchResult(category_id, title) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch((0,_spinnerActions__WEBPACK_IMPORTED_MODULE_2__.setLoading)(true));
+              dispatch((0,_spinnerActions__WEBPACK_IMPORTED_MODULE_1__.setLoading)(true));
               _context.prev = 1;
               _context.next = 4;
-              return fetch("".concat(_globalVars_globalVars__WEBPACK_IMPORTED_MODULE_1__.URL, "announcement/all?category_id=").concat(category_id, "&title=").concat(title));
+              return fetch("/api/announcement/all?category_id=".concat(category_id, "&title=").concat(title));
 
             case 4:
               response = _context.sent;
@@ -12141,9 +12163,8 @@ var getSearchResult = function getSearchResult(category_id, title) {
 
             case 9:
               data = _context.sent;
-              // добавление результата поиска в стор
               dispatch(addSearchResult(data));
-              dispatch((0,_spinnerActions__WEBPACK_IMPORTED_MODULE_2__.setLoading)(false));
+              dispatch((0,_spinnerActions__WEBPACK_IMPORTED_MODULE_1__.setLoading)(false));
               _context.next = 17;
               break;
 

@@ -1,4 +1,3 @@
-import { URL } from "../../globalVars/globalVars";
 import { setLoading } from "./spinnerActions";
 
 export const GET_ANNOUNCEMENTS = "GET_ANNOUNCEMENTS";
@@ -11,7 +10,7 @@ export const getAnnouncements = (announcements) => ({
 export const getAllAnnouncements = () => async (dispatch) => {
     dispatch(setLoading(true));
     try {
-        const response = await fetch(`${URL}announcement/all`);
+        const response = await fetch(`/api/announcement/all`);
 
         if (!response.ok) {
             throw new Error(`Request failed with status ${response.status}`);
