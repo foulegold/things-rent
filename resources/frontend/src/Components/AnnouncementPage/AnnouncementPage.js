@@ -28,7 +28,7 @@ function AnnouncementPage() {
   const content = announcement.content
   const price = Math.round(announcement.price) + " ₽"
   const status = announcement.status
-  const createdAt = announcement.created_at
+  const createdAt = `${announcement.created_at?.slice(0, 10)} ${announcement.created_at?.slice(12, 19)}`
 
   return (
     <>
@@ -38,7 +38,7 @@ function AnnouncementPage() {
           <div className="announcement__info">
             <h2 className="announcement__title">{title}</h2>
             <div className="announcement__status-wrapper">
-              <span className="announcement__created-at">{"10.11.2021"}</span>
+              <span className="announcement__created-at">{createdAt}</span>
               {status == "active" ? <div className="announcement__status_active">Активно</div> : <div className="announcement__status_inactive">Неактивно</div>}
             </div>
             <img src={IMG} className='announcement__img' alt="product-img"></img>

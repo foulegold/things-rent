@@ -11,7 +11,7 @@ export const getCategories = (categories) => ({
 
 export const getAllCategories = () => async (dispatch) => {
   try {
-    const response = await fetch(`${URL}category/all`);
+    const response = await fetch(`/api/category/all`);
 
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`);

@@ -1,10 +1,13 @@
-import { URL } from "../../globalVars/globalVars";
+import Cookies from 'js-cookie'
 
 export const addNewAnnouncement = (category_id, title, content, price, address_tran) => async () => {
   try {
-    const response = await fetch(`${URL}announcement`, {
+    await fetch("/sanctum/csrf-cookie")
+
+    const response = await fetch(`/api/announcement`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", 'X-XSRF-TOKEN': Cookies.get("XSRF-TOKEN") },
+      credentials: "include",
       body: JSON.stringify({ category_id, title, content, price, address_tran })
     });
 
