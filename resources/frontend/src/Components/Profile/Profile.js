@@ -2,17 +2,27 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import "./module.profile.css";
 import "../../globalCss/globalCss.css";
-import { useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAt
 } from "@fortawesome/free-solid-svg-icons";
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
+import { useEffect } from "react";
+import { getUserAnnouncements } from "../../store/actions/userAnnouncementsAction";
+import AnnouncementMiniCard from "../AnnouncementMiniCard/AnnouncementMiniCard"
+import { Spinner } from "react-bootstrap"
 
 function Profile() {
   const { name, email } = useSelector((state) => state.user)
-  const userAnnouncements = []
+  const userAnnouncements = useSelector((state) => state.userAnnouncements)
+  const loading = useSelector((state) => state.loading, shallowEqual)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getUserAnnouncements())
+  }, [])
 
   return (
     <>
@@ -28,15 +38,17 @@ function Profile() {
 
         <div className="userRent">
           <Tabs defaultActiveKey="userAnnouncements" id="uncontrolled-tab-example" >
-            <Tab eventKey="userAnnouncements" title="Мои объявления">
-              1111
+            <Tab eventKey="userAnnouncements" title="Мои объявления" >
+              <div className="userAnnouncementsTab">
+                {userAnnouncements.length ? userAnnouncements.map((el) => <AnnouncementMiniCard title={el.title} price={el.price} id={el.id} key={el.id} />) : <span >У вас нет активных объявлений</span>}
+              </div>
             </Tab>
             <Tab eventKey="userRent" title="Мои аренды">
               2222
             </Tab>
           </Tabs>
         </div>
-
+        {/* {loading && <div className="spinnerWrapper"><Spinner animation="border" /></div>} */}
       </div>
       <Footer />
     </>
