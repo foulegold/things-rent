@@ -7,6 +7,14 @@
 ### Получить все объявления
 `/api/announcement/all` `GET` — получить все объявления;
 
+    // POST-параметры:
+    //  category_id, date_from, date_to, price_from, price_to, title
+    // Query-параметры:
+    //  page — номер страницы,
+    //  limit — количество объявлений,
+    //  sort — поле сортировки (как в БД),
+    //  sort_type — тип сортировки (ACS, DESC). ACS по умолчанию
+
 `/api/announcement/{id}` `GET` — получить информацию по объявлению
 
 ### Получить все категории

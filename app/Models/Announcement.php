@@ -97,14 +97,20 @@ class Announcement extends Model
     }
 
     // POST-параметры:
-    // category_id, date_from, date_to, price_from, price_to, title
+    //  category_id, date_from, date_to, price_from, price_to, title
     // Query-параметры:
-    // page — номер страницы
+    //  page — номер страницы,
+    //  limit — количество объявлений,
+    //  sort — поле сортировки (как в БД),
+    //  sort_type — тип сортировки (ACS, DESC). ACS по умолчанию
     public static function getAll(Array $params)
     {
         $page = $params['page'];
         $limit = $params['limit'];
         $offset = ($page - 1) * $limit;
+
+        $sort = $params['sort'];
+        $sort_type = $params['sort_type'];
 
         // Обработаем параметры от sql-инъекций
         // TODO: добавить более детальную обработку параметров
@@ -146,7 +152,7 @@ class Announcement extends Model
             $whereParams[] = ['title', 'like', "%{$params['title']}%"];
         }
 
-        $result = Announcement::where($whereParams)->orderBy('update_at', 'ASC')->limit($limit)->offset($offset)->get()->toArray();
+        $result = Announcement::where($whereParams)->orderBy($sort, $sort_type)->limit($limit)->offset($offset)->get()->toArray();
 
         // TODO: Добавить фильтр по свободной дате
         return $result;

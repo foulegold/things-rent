@@ -164,6 +164,8 @@ class AnnouncementController extends Controller
         $params = $request->request->all();
         $params['page'] = $request->query->get('page', 1);
         $params['limit'] = $request->query->get('limit', config('announcement.announcements.pageLimit'));
+        $params['sort'] = $request->query->get('sort', 'update_at');
+        $params['sort_type'] = $request->query->get('sort_type', 'ASC');
         return Announcement::getAll($params);
     }
 
