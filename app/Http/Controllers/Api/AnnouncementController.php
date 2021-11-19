@@ -21,11 +21,11 @@ class AnnouncementController extends Controller
      */
     public function index(Announcement $announcement): JsonResponse
     {
-        $announcement = $announcement->where('user_id', Auth::user()->id)->get();
+        $announcements = $announcement->where('user_id', Auth::user()->id)->get();
         return response()->json([
             'status' => 'ok',
             'message' => 'list Announcements',
-            'Announcements' => $announcement
+            'Announcements' => $announcements
         ]);
     }
 
@@ -71,7 +71,7 @@ class AnnouncementController extends Controller
             ]);
         }
         return response()->json([
-            'status' => 'info',
+            'status' => 'error',
             'message' => 'Такая запись уже есть в Таблице',
         ]);
     }
@@ -124,7 +124,7 @@ class AnnouncementController extends Controller
             ]);
         }
         return response()->json([
-            'status' => 'info',
+            'status' => 'error',
             'message' => 'Это объявление не принадлежит этому пользователю!',
         ]);
     }
@@ -153,7 +153,7 @@ class AnnouncementController extends Controller
             ]);
         }
         return response()->json([
-            'status' => 'info',
+            'status' => 'error',
             'message' => 'Это объявление не принадлежит этому пользователю!',
         ]);
     }

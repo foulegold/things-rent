@@ -142,18 +142,18 @@ const service = () => {
 const footerBotton = () => {
   return (
     <div className={s.footer_botton}>
-      <h5 className={s.title_copyright}>
+      <div className={s.title_copyright}>
         Copyright ©2021 All rights reserved | This template is made with by
         Colorlib
-      </h5>
+      </div>
     </div>
   );
 };
 
 const Footer = (props) => {
   return (
-    <div>
-      <footer className={s.footer}>
+    <footer>
+      <div className={s.footer}>
         <div className={s.container + " appContainer"}>
           <div className={s.wrapper_cards}>
             {aboutUs()}
@@ -162,10 +162,10 @@ const Footer = (props) => {
             {service()}
           </div>
         </div>
-      </footer>
+      </div>
 
       {footerBotton()}
-    </div>
+    </footer>
   );
 };
 

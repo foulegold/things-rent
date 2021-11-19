@@ -13,11 +13,21 @@ import Search from "../Search/Search";
 import { useState } from "react";
 import AuthPage from "../AuthPage/AuthPage";
 import RegPage from "../RegPage/RegPage";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCategories } from "../../store/actions/categoriesAction";
 
 function Header() {
-  const user = false;
+  const user = useSelector((state) => state.user);
   const [regFlg, setRegFlg] = useState(false);
   const [authFlg, setAuthFlg] = useState(false);
+
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(getAllCategories())
+  }, [])
 
   return (
     <header>
@@ -64,7 +74,7 @@ function Header() {
             ) : (
               <div className="col-md-3">
                 <div className="header-links">
-                  <Link className="link" to="/announcement">
+                  <Link className="link" to="/newAnnouncement">
                     <button className="links-btn">
                       <FontAwesomeIcon icon={faFolderPlus} size="lg" />
                       <span>Новое объявление</span>

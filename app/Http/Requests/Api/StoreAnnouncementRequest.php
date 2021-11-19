@@ -36,19 +36,6 @@ class StoreAnnouncementRequest extends FormRequest
     /**
      * @return array
      */
-    public function messages(): array
-    {
-        return [
-            'required' => ':attribute - обязательно для заполнения',
-            'integer' => ':attribute - должно быть числом',
-            'string' => ':attribute - должен быть строкой',
-            'numeric' => ':attribute - должен быть числом',
-        ];
-    }
-
-    /**
-     * @return array
-     */
     public function attributes(): array
     {
         return [

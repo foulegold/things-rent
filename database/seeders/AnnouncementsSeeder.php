@@ -18,28 +18,16 @@ class AnnouncementsSeeder extends Seeder
      */
     public function run(Announcement $announcement): void
     {
-        $announcement->insert($this->getDataAnnouncement());
-    }
-
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function getDataAnnouncement() : array
-    {
         $faker = Factory::create('ru_RU');
-        $data = [];
-        for($i=1; $i <= 10; $i++) {
-            $data[] = [
-                'user_id' => $i,
-                'category_id' => $i,
-                'title' => $faker->realText(random_int(50,200)),
-                'content' => $faker->realText(random_int(500,1000)),
+        for ($i = 1; $i <= 100; $i++) {
+            $announcement->create([
+                'user_id' => random_int(1, 10),
+                'category_id' => random_int(1, 13),
+                'title' => $faker->realText(random_int(50, 200)),
+                'content' => $faker->realText(random_int(500, 1000)),
                 'price' => $faker->randomNumber(),
                 'address_tran' => $faker->address(),
-            ];
+            ]);
         }
-
-        return $data;
     }
 }
