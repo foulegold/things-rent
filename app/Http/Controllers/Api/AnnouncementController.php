@@ -163,6 +163,7 @@ class AnnouncementController extends Controller
     {
         $params = $request->request->all();
         $params['page'] = $request->query->get('page', 1);
+        $params['limit'] = $request->query->get('limit', config('announcement.announcements.pageLimit'));
         return Announcement::getAll($params);
     }
 
