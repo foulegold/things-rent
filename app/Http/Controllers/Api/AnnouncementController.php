@@ -21,11 +21,11 @@ class AnnouncementController extends Controller
      */
     public function index(Announcement $announcement): JsonResponse
     {
-        $announcement = $announcement->where('user_id', Auth::user()->id)->get();
+        $announcements = $announcement->where('user_id', Auth::user()->id)->get();
         return response()->json([
             'status' => 'ok',
             'message' => 'list Announcements',
-            'Announcements' => $announcement
+            'Announcements' => $announcements
         ]);
     }
 
@@ -71,7 +71,7 @@ class AnnouncementController extends Controller
             ]);
         }
         return response()->json([
-            'status' => 'info',
+            'status' => 'error',
             'message' => 'Такая запись уже есть в Таблице',
         ]);
     }
@@ -124,7 +124,7 @@ class AnnouncementController extends Controller
             ]);
         }
         return response()->json([
-            'status' => 'info',
+            'status' => 'error',
             'message' => 'Это объявление не принадлежит этому пользователю!',
         ]);
     }
@@ -153,8 +153,26 @@ class AnnouncementController extends Controller
             ]);
         }
         return response()->json([
-            'status' => 'info',
+            'status' => 'error',
             'message' => 'Это объявление не принадлежит этому пользователю!',
         ]);
     }
+
+    //++ Голденко
+    public function all(Request $request)
+    {
+        $params = $request->request->all();
+        $params['page'] = $request->query->get('page', 1);
+        return Announcement::getAll($params);
+    }
+
+    /**
+     * @param Announcement $announcement
+     * @param Request $request
+     */
+    public function one(Announcement $announcement, Request $request)
+    {
+        return $announcement->getFullAnnouncementData();
+    }
+    //-- Голденко
 }

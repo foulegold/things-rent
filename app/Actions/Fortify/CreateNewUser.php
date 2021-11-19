@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Models\Users_info;
+use App\Models\UsersInfo;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -40,7 +41,7 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         //создаем запись в таблице users_infos
-        Users_info::create([
+        UsersInfo::create([
             'user_id' => $user->id,
             'name' => $input['name'],
         ]);
