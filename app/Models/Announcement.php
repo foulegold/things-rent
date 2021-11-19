@@ -48,7 +48,7 @@ class Announcement extends Model
         return $this->hasMany(Reservation::class);
     }
 
-    
+
     // Получаем полную информацию по объявлению
     public function getFullAnnouncementData()
     {
@@ -102,9 +102,9 @@ class Announcement extends Model
     // page — номер страницы
     public static function getAll(Array $params)
     {
-        $pageNum = $params['page'];
-        $pageLimit = config('announcement.announcements.pageLimit');
-        $offset = ($pageNum - 1) * $pageLimit;
+        $page = $params['page'];
+        $limit = $params['limit'];
+        $offset = ($page - 1) * $limit;
 
         // Обработаем параметры от sql-инъекций
         // TODO: добавить более детальную обработку параметров
@@ -146,7 +146,7 @@ class Announcement extends Model
             $whereParams[] = ['title', 'like', "%{$params['title']}%"];
         }
 
-        $result = Announcement::where($whereParams)->orderBy('update_at', 'ASC')->limit($pageLimit)->offset($offset)->get()->toArray();
+        $result = Announcement::where($whereParams)->orderBy('update_at', 'ASC')->limit($limit)->offset($offset)->get()->toArray();
 
         // TODO: Добавить фильтр по свободной дате
         return $result;
