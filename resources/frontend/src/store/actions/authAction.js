@@ -52,6 +52,7 @@ export const logout = () => async (dispatch) => {
       throw new Error(`Request failed with status ${response.status}`);
     }
 
+    dispatch(userLogout())
   } catch (err) {
     // обработка ошибки
     console.log(err)

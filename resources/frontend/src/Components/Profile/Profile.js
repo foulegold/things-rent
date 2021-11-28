@@ -12,17 +12,25 @@ import Tab from 'react-bootstrap/Tab'
 import { useEffect } from "react";
 import { getUserAnnouncements } from "../../store/actions/userAnnouncementsAction";
 import AnnouncementMiniCard from "../AnnouncementMiniCard/AnnouncementMiniCard"
-import { Spinner } from "react-bootstrap"
+import { Spinner, Button } from "react-bootstrap"
+import { logout } from "../../store/actions/authAction";
+import { useHistory } from "react-router";
 
 function Profile() {
   const { name, email } = useSelector((state) => state.user)
   const userAnnouncements = useSelector((state) => state.userAnnouncements)
   const loading = useSelector((state) => state.loading, shallowEqual)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(getUserAnnouncements())
   }, [])
+
+  function handleLogout() {
+    dispatch(logout())
+    history.push("/")
+  }
 
   return (
     <>
@@ -34,6 +42,7 @@ function Profile() {
             <p>{name}</p>
           </div>
           <p><span className="profile__user-icon"><FontAwesomeIcon icon={faAt} size="lg" /></span> {` ${email}`}</p>
+          <Button variant="danger" onClick={handleLogout}>Выход</Button>
         </div>
 
         <div className="userRent">
