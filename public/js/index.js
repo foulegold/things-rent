@@ -12842,7 +12842,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _store_actions_userAnnouncementsAction__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../store/actions/userAnnouncementsAction */ "./resources/frontend/src/store/actions/userAnnouncementsAction.js");
 /* harmony import */ var _AnnouncementMiniCard_AnnouncementMiniCard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../AnnouncementMiniCard/AnnouncementMiniCard */ "./resources/frontend/src/Components/AnnouncementMiniCard/AnnouncementMiniCard.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Spinner.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -12923,13 +12922,8 @@ function Profile() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_bootstrap_Tab__WEBPACK_IMPORTED_MODULE_12__["default"], {
             eventKey: "userRent",
             title: "\u041C\u043E\u0438 \u0430\u0440\u0435\u043D\u0434\u044B",
-            children: "2222"
+            children: "\u041D\u0435\u0442 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u0430\u0440\u0435\u043D\u0434"
           })]
-        })
-      }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-        className: "spinnerWrapper",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-          animation: "border"
         })
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Footer_Footer__WEBPACK_IMPORTED_MODULE_0__["default"], {})]

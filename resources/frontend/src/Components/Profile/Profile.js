@@ -44,7 +44,7 @@ function Profile() {
               </div>
             </Tab>
             <Tab eventKey="userRent" title="Мои аренды">
-              2222
+              Нет активных аренд
             </Tab>
           </Tabs>
         </div>
