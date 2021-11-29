@@ -40,3 +40,9 @@
   border: 1px solid #e5dede;
   border-radius: 10px;
 }
+
+.userAnnouncementsTab {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
