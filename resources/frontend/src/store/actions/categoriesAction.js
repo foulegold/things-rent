@@ -1,4 +1,5 @@
 import { URL } from "../../globalVars/globalVars";
+import { setWarning } from "./warningAction";
 
 
 export const GET_CATEGORIES = "GET_CATEGORIES"
@@ -23,6 +24,6 @@ export const getAllCategories = () => async (dispatch) => {
     dispatch(getCategories(data));
   } catch (err) {
     // обработка ошибки
-    console.log(err);
+    dispatch(setWarning(err));
   }
 };

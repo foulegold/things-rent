@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import { setWarning } from './warningAction';
 
 export const addNewAnnouncement = (category_id, title, content, price, address_tran) => async () => {
   try {
@@ -17,6 +18,6 @@ export const addNewAnnouncement = (category_id, title, content, price, address_t
 
   } catch (err) {
     // обработка ошибки
-    console.log(err);
+    dispatch(setWarning(err));
   }
 };

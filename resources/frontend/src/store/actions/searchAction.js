@@ -1,5 +1,5 @@
 import { setLoading } from "./spinnerActions";
-
+import { setWarning } from "./warningAction";
 
 export const GET_SEARCH_RESULT = "GET_SEARCH_RESULT"
 
@@ -23,6 +23,6 @@ export const getSearchResult = (category_id, title) => async (dispatch) => {
 
   } catch (err) {
     // обработка ошибки
-    console.log(err)
+    dispatch(setWarning(err))
   }
 };

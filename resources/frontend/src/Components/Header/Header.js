@@ -16,11 +16,14 @@ import RegPage from "../RegPage/RegPage";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "../../store/actions/categoriesAction";
+import ModalWarning from "../ModalWarning/ModalWarning";
 
 function Header() {
   const user = useSelector((state) => state.user);
+  const warning = useSelector((state) => state.warning)
   const [regFlg, setRegFlg] = useState(false);
   const [authFlg, setAuthFlg] = useState(false);
+
 
   const dispatch = useDispatch();
 
@@ -94,6 +97,7 @@ function Header() {
           {authFlg && (
             <AuthPage setRegFlg={setRegFlg} setAuthFlg={setAuthFlg} />
           )}
+          {warning && (<ModalWarning text={warning} />)}
         </div>
       </div>
     </header>

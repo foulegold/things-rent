@@ -12,11 +12,9 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConf] = useState("");
   const dispatch = useDispatch()
-  // const [error, setError] = useState("");
 
   function handlerReg(e) {
     e.preventDefault();
-    // console.log(document.querySelector('meta[name="csrf-token"]').content)
     dispatch(registration(name, email, password, passwordConfirm))
   }
 

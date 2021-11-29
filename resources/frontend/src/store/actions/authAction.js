@@ -1,4 +1,6 @@
 import Cookies from 'js-cookie'
+import { setWarning } from './warningAction'
+
 
 export const USER_LOGIN = "USER_LOGIN"
 export const USER_LOGOUT = "USER_LOGOUT"
@@ -34,7 +36,7 @@ export const login = (email, password, remember) => async (dispatch) => {
 
   } catch (err) {
     // обработка ошибки
-    console.log(err)
+    dispatch(setWarning(err))
   }
 };
 
@@ -55,6 +57,6 @@ export const logout = () => async (dispatch) => {
     dispatch(userLogout())
   } catch (err) {
     // обработка ошибки
-    console.log(err)
+    dispatch(setWarning(err))
   }
 };

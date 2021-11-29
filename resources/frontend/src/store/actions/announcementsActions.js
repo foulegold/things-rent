@@ -1,4 +1,6 @@
 import { setLoading } from "./spinnerActions";
+import { setWarning } from "./warningAction";
+
 
 export const GET_ANNOUNCEMENTS = "GET_ANNOUNCEMENTS";
 
@@ -21,6 +23,6 @@ export const getAllAnnouncements = () => async (dispatch) => {
         dispatch(setLoading(false));
     } catch (err) {
         // обработка ошибки
-        console.log(err);
+        setWarning(err);
     }
 };
