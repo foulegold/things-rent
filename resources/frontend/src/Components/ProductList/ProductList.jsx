@@ -23,7 +23,7 @@ const ProductList = (props) => {
                     )}
                     {announcements.length ? (
                         announcements
-                            .slice(0, 4)
+                            .slice(0, 8)
                             .map((el) => (
                                 <AnnouncementMiniCard
                                     title={el.title}

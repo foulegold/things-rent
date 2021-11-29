@@ -10,7 +10,6 @@ import { Spinner } from "react-bootstrap"
 function FilteredAnnouncements() {
   const announcements = useSelector((state) => state.filteredAnnouncements, shallowEqual)
   const loading = useSelector((state) => state.loading, shallowEqual)
-  const warning = useSelector((state) => state.warning)
 
   return (
     <>
@@ -21,7 +20,6 @@ function FilteredAnnouncements() {
             {loading && <div className="spinnerWrapper"><Spinner animation="border" /></div>}
             {announcements.length ? announcements.map((el) => <AnnouncementMiniCard title={el.title} price={el.price} id={el.id} key={el.id} />) : <span className="filter__empty">Ничего не найдено</span>}
           </div>
-          {warning && (<ModalWarning text={warning} />)}  dispatch(setWarning(err))
         </div>
       </main>
       <Footer />
