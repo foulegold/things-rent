@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
+import { setWarning } from './warningAction';
 
-export const addNewAnnouncement = (category_id, title, content, price, address_tran) => async () => {
+export const addNewAnnouncement = (category_id, title, content, price, address_tran) => async (dispatch) => {
   try {
     await fetch("/sanctum/csrf-cookie")
 
@@ -15,8 +16,10 @@ export const addNewAnnouncement = (category_id, title, content, price, address_t
       throw new Error(`Request failed with status ${response.status}`);
     }
 
+    dispatch(setWarning("Вашe объявление добавлено!"))
+
   } catch (err) {
     // обработка ошибки
-    console.log(err);
+    dispatch(setWarning(err));
   }
 };

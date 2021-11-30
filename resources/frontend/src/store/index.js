@@ -7,6 +7,8 @@ import categoriesReducer from "./reducers/categoriesReducer";
 import searchReducer from "./reducers/searchReducer";
 import spinnerReducer from "./reducers/spinnerReducer";
 import userAnnouncementsReducer from "./reducers/userAnnouncementsReducer";
+import warningReducer from "./reducers/warningReducer";
+
 
 // объединение редьюсеров
 const rootReducer = combineReducers({
@@ -15,7 +17,8 @@ const rootReducer = combineReducers({
   categories: categoriesReducer,
   loading: spinnerReducer,
   user: userReducer,
-  userAnnouncements: userAnnouncementsReducer
+  userAnnouncements: userAnnouncementsReducer,
+  warning: warningReducer,
 });
 
 export const store = createStore(

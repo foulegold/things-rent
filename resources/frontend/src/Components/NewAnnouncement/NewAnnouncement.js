@@ -7,11 +7,13 @@ import { useState } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { getCategoriesArray } from "../Search/Search";
 import { addNewAnnouncement } from "../../store/actions/newAnnouncementAction";
+import { useHistory } from "react-router";
 
 
 function NewAnnouncement() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories, shallowEqual)
+  const history = useHistory()
 
   const [title, setTitle] = useState("")
   const [content, seContent] = useState("")
@@ -29,6 +31,9 @@ function NewAnnouncement() {
   function handleSubmit(e) {
     e.preventDefault()
     dispatch(addNewAnnouncement(category_id, title, content, price, address_tran))
+    setTimeout(() =>
+      history.push("/"), 3000
+    )
   }
 
   return (
