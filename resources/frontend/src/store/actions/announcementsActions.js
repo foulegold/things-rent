@@ -12,7 +12,7 @@ export const getAnnouncements = (announcements) => ({
 export const getAllAnnouncements = () => async (dispatch) => {
     dispatch(setLoading(true));
     try {
-        const response = await fetch(`/api/announcement/all?limit=50&sort_type=DESC`);
+        const response = await fetch(`/api/announcement/all?limit=100&sort_type=DESC`);
 
         if (!response.ok) {
             throw new Error(`Request failed with status ${response.status}`);
